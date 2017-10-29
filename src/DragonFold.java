@@ -1,10 +1,6 @@
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.ArrayList;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 public class DragonFold
 {
@@ -52,31 +48,34 @@ public class DragonFold
 
     private static void directionGenerator(int num)
     {
-        ArrayList<Integer> flip = new ArrayList<>();
+        ArrayList<Integer> temp = new ArrayList<>();
 
         for (int i = 0; i < num; i++)
         {
-            flip.clear();
-            flip.addAll(0, directions);
-
-            for (int j = flip.size() - 1; j >= 0; j--)
+            temp.clear();
+            for (int direction : directions)
             {
-                switch (flip.get(j))
-                {
+                switch (direction) {
                     case U:
-                        directions.add(R);
+                        temp.add(R);
+                        temp.add(U);
                         break;
                     case D:
-                        directions.add(L);
+                        temp.add(L);
+                        temp.add(D);
                         break;
                     case L:
-                        directions.add(U);
+                        temp.add(L);
+                        temp.add(U);
                         break;
                     case R:
-                        directions.add(D);
+                        temp.add(R);
+                        temp.add(D);
                         break;
                 }
             }
+            directions.clear();
+            directions.addAll(temp);
         }
     }
 
